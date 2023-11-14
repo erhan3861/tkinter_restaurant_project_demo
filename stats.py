@@ -90,8 +90,11 @@ class UserStatsApp:
             self.canvas.get_tk_widget().pack()
 
         else:
-         tk.Label(self.root, text=f"User '{username}' does not exist. Please register first.").pack()
-
+            tk.Label(self.root, text=f"User '{username}' registered first time.").pack()
+            login_time = datetime.now()
+            new_user = UserUsage(username=username, login_time=login_time)
+            self.session.add(new_user)
+            self.session.commit()
     
         
 
